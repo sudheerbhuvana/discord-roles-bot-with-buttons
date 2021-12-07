@@ -1,0 +1,30 @@
+{
+	"token": "ODk5MTE5MjY0NjA5NTAxMTg2.YWuIEQ.lpqWasdsassazVTOMhNdTMulpl-vkkI97jc",
+	"status": "Alex Manager",
+	"prefix": "~",
+	"enable_slash": false,
+	"owners": ["781882376790736937"],
+	"embed_content": {
+		"title": "Support For Alex Music",
+		"color": "#630330",
+		"thumbnail": true,
+		"thumbnail_url": "https://cdn.discordapp.com/attachments/914421966851702818/917802018247180358/alex_merry_2.jpg",
+		"question_1": "**How I Can Invite Alex Music.**",
+		"question_2": "**I want to view a full list of Alex Music's commands.**\n**How do I play a song?**",
+		"question_3": "**I can't hear Alex Music or the audio sounds laggy.\nAlex Music isn't Responding in my server.**",
+		"question_4": "**How do I change Alex Music's prefix? Or what is Alex Music prefix?**",
+		"question_5": "**I would like to report a bug I encountered with Alex Music.**"
+	},
+	"responses": {
+		"response_1": "Invite Alex Music\n\n`You can invite Alex by clicking the following link Below, on the next page you can select a server you want to invite it to and press Authorize.`\n\n`If the server you want to invite it to is not in the list please check if you're signed in with the right account.`\n\n[Alex Music (Admin Perms)](https://discord.com/api/oauth2/authorize?client_id=898941398538158080&permissions=8&scope=bot)\n[Alex Music (Recomended)](https://discord.com/api/oauth2/authorize?client_id=898941398538158080&permissions=36990048&scope=bot)\n\nStill need help? Press the 🆘 button to get help from a support member.",
+		"response_2": "Go to <#914265814817992786> and type ,help or <@898941398538158080> help to check all Alex Music Commands!\n\nYou can get details of specific command by typing %help <commandname>\nYou have to use <@898941398538158080> play or ,play <link or track title> to play any song you want (Without the <>)\n\nFor Example:\n%play hello\n%play https://www.youtube.com/watch?v=YQHsXMglC9A\n,%play https://open.spotify.com/playlist/37i9dQZF1DWUa8ZRTfalHk?si=f9e7349bf23e4cdb\n\nStill need help? Press the 🆘 button to get help from a support member.",
+		"response_3": "Make sure that bot has a proper permission in your server or not?\n\nStill not responding then check the bot is online or Offline! If bot appear offline in your server then Press the sos button to report our Developers.\n\nStill need help? Press the 🆘 button to get help from a support member.",
+		"response_4": "You have to use ,prefix <new prefix>. Make sure that you must have the `Manage Server` permissions! otherwise you unable to change the bot's prefix.\n\nIf you don't know what is the prefix of Alex Music in your server then @mention the bot in a text channel of your server to knows the bot's current prefix.\n\nStill need help? Press the 🆘 button to get help from a support member.",
+		"response_5": "Go to <#914390682649653258> and report the bug to our Developers."
+	},
+	"log_channel_id": "917805217490305075",
+	"assistance_channel_id": "914386347341545562",
+	"assistance_role_id": "914386372465393664",
+	"Important": " Role to be Added in above field and The Further Assistance Channel will visible so create a role and set perms",
+	"Note": "Fill All The Above.For new Line use \n.For new TabSpace use \t.HyperLink use (text)[link] it will appear blue & clickable"
+}
