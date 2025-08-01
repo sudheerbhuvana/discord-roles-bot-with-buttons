@@ -1,30 +1,31 @@
 {
-  "name": "support-bot-with-buttons",
+  "name": "discord-roles-bot-with-buttons",
   "version": "1.0.0",
-  "description": "A Support Bot For Your Server with Simple Setup.Easy To Host.24/7 Online",
+  "description": "A Discord role selector bot using buttons. Simple config, easy to host, always online.",
   "main": "index.js",
   "scripts": {
-    "test": "node index.js",
-    "start": "node index.js"
+    "start": "node index.js",
+    "test": "node index.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Abdul1810/support-bot-with-buttons.git"
+    "url": "git+https://github.com/sudheerbhuvana/discord-roles-bot-with-buttons.git"
   },
   "keywords": [
-    "Discord_Bot",
-    "Discord-js-v14",
-    "Discord_Buttons",
-    "Support_Bot",
-    "24/7_Online",
-    "Button_interactions"
+    "discord",
+    "discord-bot",
+    "discord.js",
+    "discord.js-v14",
+    "role-selector",
+    "buttons",
+    "role-bot"
   ],
-  "author": "Abdul1810",
-  "license": "ISC",
+  "author": "Sudheer Reddy",
+  "license": "MIT",
   "bugs": {
-    "url": "https://github.com/Abdul1810/support-bot-with-buttons/issues"
+    "url": "https://github.com/sudheerbhuvana/discord-roles-bot-with-buttons/issues"
   },
-  "homepage": "https://github.com/Abdul1810/support-bot-with-buttons#readme",
+  "homepage": "https://github.com/sudheerbhuvana/discord-roles-bot-with-buttons#readme",
   "dependencies": {
     "discord.js": "^14.21.0",
     "dotenv": "^17.2.1"
