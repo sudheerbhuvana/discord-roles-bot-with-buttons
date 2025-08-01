@@ -6,11 +6,11 @@ A simple, interactive Discord bot that lets your server members **choose roles**
 
 ## 📌 Features
 
-✅ Supports **unlimited role categories**
-✅ Users can click buttons to add/remove roles instantly
-✅ Fully customizable with **emojis & names**
-✅ Works with multiple categories (like `gender`, `branch`, `year`, `color`, etc.)
-✅ Includes an **owner-only eval command** for testing/debugging (optional)
+- ✅ Supports **unlimited role categories**
+- ✅ Users can click buttons to add/remove roles instantly
+- ✅ Fully customizable with **emojis & names**
+- ✅ Works with multiple categories (like `gender`, `branch`, `year`, `color`, etc.)
+- ✅ Includes an **owner-only eval command** for testing/debugging (optional)
 
 ---
 
@@ -21,7 +21,7 @@ A simple, interactive Discord bot that lets your server members **choose roles**
 ```bash
 git clone https://github.com/sudheerbhuvana/discord-roles-bot-with-buttons.git
 cd discord-roles-bot-with-buttons
-```
+````
 
 ### 2️⃣ Install Dependencies
 
@@ -43,7 +43,7 @@ Replace `YOUR_DISCORD_BOT_TOKEN` with your bot’s token from the Discord Develo
 
 ## ⚙️ Configuration
 
-Open the `config.js` file and customize it for **your server**.
+Open the `config.js` file and customize it for **your server**:
 
 ```js
 module.exports = {
@@ -67,22 +67,24 @@ module.exports = {
 };
 ```
 
-### 🗂️ How to Configure
+---
+
+## 🗂️ How to Configure
 
 * Each **category** is an array of roles.
 * Each **role** has:
 
   * `name` → shown on the button.
   * `roleId` → the actual ID of the Discord role in your server.
-  * `emoji` → shown on the button.(Leave empty for no emoji)
-  
-Example: If you add a `color` category in `config.js`:
+  * `emoji` → shown on the button (leave empty for no emoji).
+
+**Example:** If you add a `color` category in `config.js`:
 
 ```
 ~create color
 ```
 
-will create a role selector for the **color** category.
+...will create a role selector for the **color** category.
 
 ---
 
@@ -94,13 +96,14 @@ Run the bot using:
 node index.js
 ```
 
-Then use your **prefix** + `create` command in any server channel to create role selectors. Example:
+Then use your **prefix** + `create` command in any server channel to create role selectors.
+**Example:**
 
 ```
 ~create gender
 ```
 
-This sends an embed with buttons for `gender` roles — users can click to add or remove roles!
+This sends an embed with buttons for the `gender` roles — users can click to add or remove roles!
 
 ---
 
