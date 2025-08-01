@@ -5,13 +5,12 @@ module.exports = {
   token: process.env.TOKEN,
   prefix: "~",
   owners: ["781882376790736937"],
-
+  activity: ["with Id cards" ,"Girls", "Sridhar"], //PLAYING, WATCHING, LISTENING
   categories: {
     gender: [
       { name: "Male", roleId: "1399531183456387073", emoji: "968876717550755860" },
       { name: "Female", roleId: "1399531270408507544", emoji: "1158780910381043752" },
       { name: "Other", roleId: "914383647719694356", emoji: "968819647170347048" },
-     
     ],
     branch: [
       { name: "KL Vijayawada", roleId: "1400400473089118279", emoji: "968823117256458240" },

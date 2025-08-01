@@ -1,54 +1,65 @@
-	const { Client, GatewayIntentBits, ActionRowBuilder, ButtonBuilder, ButtonStyle } = require("discord.js");
-	const config = require("./config.js");
+const { Client, GatewayIntentBits, ActivityType } = require("discord.js");
+const fs = require("node:fs");
+const path = require("node:path");
+const config = require("./config.js");
 
-	const client = new Client({
-	intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages, GatewayIntentBits.MessageContent, GatewayIntentBits.GuildMembers]
-	});
+const client = new Client({
+  intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages, GatewayIntentBits.MessageContent, GatewayIntentBits.GuildMembers]
+});
 
-	client.once("ready", () => {
-	console.log(`✅ Logged in as ${client.user.tag}`);
-	});
+// Command collection
+client.commands = new Map();
 
-	// Deploy role selector: ~create <category>
-	client.on("messageCreate", async (msg) => {
-	if (msg.author.bot) return;
-	if (!config.owners.includes(msg.author.id)) return;
-
-	const args = msg.content.split(" ");
-	if (args[0] !== `${config.prefix}create`) return;
-
-	const categoryName = args[1];
-	const roles = config.categories[categoryName];
-	if (!roles) return msg.channel.send(`<:RedTick:968876802653167616>	 No category named **${categoryName}**.`);
-
-	const buttons = roles.map(r =>
-		new ButtonBuilder()
-		.setLabel(r.name)
-		.setEmoji(r.emoji)
-		.setCustomId(`${categoryName}_${r.name.toLowerCase()}`)
-		.setStyle(ButtonStyle.Secondary)
-	);
-	const rows = [];
-for (let i = 0; i < buttons.length; i += 5) {
-  const row = new ActionRowBuilder().addComponents(buttons.slice(i, i + 5));
-  rows.push(row);
+// Load all commands
+const commandFiles = fs.readdirSync(path.join(__dirname, "commands"));
+for (const file of commandFiles) {
+  const command = require(`./commands/${file}`);
+  client.commands.set(command.name, command);
 }
 
+client.once("ready", () => {
+  console.log(`✅ Logged in as ${client.user.tag}`);
+  client.user.setStatus('idle');
+
+  const activities = [
+    { name: `${config.activity[0]}`, type: ActivityType.Playing },
+    { name: `${config.activity[1]}`, type: ActivityType.Watching },
+    { name: `${config.activity[2]}`, type: ActivityType.Listening },
+  ];
+
+  let index = 0;
+  setInterval(() => {
+    if (index >= activities.length) index = 0;
+    const activity = activities[index];
+    client.user.setActivity(activity);
+    index++;
+  }, 10_000);
+});
+
+client.on("messageCreate", async (msg) => {
+  if (msg.author.bot) return;
+  if (!msg.content.startsWith(config.prefix)) return;
+
+  const args = msg.content.slice(config.prefix.length).trim().split(/ +/);
+  const commandName = args.shift().toLowerCase();
+
+  const command = client.commands.get(commandName); 
+  if (!command) return;
+
+  if (commandName === "eval" && !config.owners.includes(msg.author.id)) {
+    return msg.reply("Only my owner can use this.");
+  }
+
+  try {
+    await command.run(client, msg, args);
+  } catch (err) {
+    console.error(err);
+    msg.reply("There was an error executing that command.");
+  }
+});
 
 
-	await msg.channel.send({
-		embeds: [{
-		title: `Select your **${categoryName}** role`,
-		color: 0x2f3136
-		}],
-		components: rows
-	});
-
-	console.log(`<:GreenTick:968876717550755860> Sent ${categoryName} selector.`);
-	});
-
-	// Toggle role when button pressed
-	client.on("interactionCreate", async (interaction) => {
+client.on("interactionCreate", async (interaction) => {
   if (!interaction.isButton()) return;
 
   const [category, name] = interaction.customId.split("_");
@@ -61,41 +72,27 @@ for (let i = 0; i < buttons.length; i += 5) {
   try {
     if (hasRole) {
       await member.roles.remove(roleData.roleId);
-
-      const embed = {
-        color: 0xff0000,
-        description: `<:RedTick:968876802653167616> **Removed** <@&${roleData.roleId}> **from** <@${member.id}>`
-      };
-
       await interaction.reply({
-        embeds: [embed],
+        embeds: [{
+          color: 0xff0000,
+          description: `❌ Removed <@&${roleData.roleId}> from <@${member.id}>`
+        }],
         ephemeral: true
       });
     } else {
-      // If only one role per category:
-      // Remove other roles in same category first
-      for (const other of config.categories[category]) {
-        if (other.roleId !== roleData.roleId && member.roles.cache.has(other.roleId)) {
-          await member.roles.remove(other.roleId);
-        }
-      }
-
       await member.roles.add(roleData.roleId);
-
-      const embed = {
-        color: 0x00ff00,
-        description: `<:GreenTick:968876717550755860>  **Added** <@&${roleData.roleId}> **to** <@${member.id}>`
-      };
-
       await interaction.reply({
-        embeds: [embed],
+        embeds: [{
+          color: 0x00ff00,
+          description: `✅ Added <@&${roleData.roleId}> to <@${member.id}>`
+        }],
         ephemeral: true
       });
     }
   } catch (err) {
     console.error(err);
     await interaction.reply({
-      content: `<:RedTick:968876802653167616> Could not toggle role.`,
+      content: `❌ Could not toggle role.`,
       ephemeral: true
     });
   }
