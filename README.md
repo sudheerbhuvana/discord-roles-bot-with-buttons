@@ -74,8 +74,7 @@ module.exports = {
 
   * `name` → shown on the button.
   * `roleId` → the actual ID of the Discord role in your server.
-  * `emoji` → shown on the button.
-
+  * `emoji` → shown on the button.(Leave empty for no emoji)
 Example: If you add a `color` category in `config.js`:
 
 ```

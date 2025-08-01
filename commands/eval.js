@@ -7,12 +7,12 @@ module.exports = {
     if (!code) return msg.reply("No code provided.");
 
     try {
-      let evaled = eval(code);
-      if (typeof evaled !== "string") {
-        evaled = require("util").inspect(evaled);
+      let result = eval(code);
+      if (typeof result !== "string") {
+        result = require("util").inspect(result);
       }
 
-      if (evaled.length > 2000) {
+      if (result.length > 2000) {
         return msg.reply("Output too long.");
       }
 
@@ -24,7 +24,7 @@ module.exports = {
       );
 
       const sent = await msg.reply({
-        content: `\`\`\`js\n${evaled}\n\`\`\``,
+        content: `\`\`\`js\n${result}\n\`\`\``,
         components: [row]
       });
 
